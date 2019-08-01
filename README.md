@@ -1,6 +1,6 @@
 # GDScript syntax for highlight.js
 
-Syntax implementation of [Godot's](https://godotengine.org/) GDScript language for [highlight.js](https://github.com/highlightjs/highlight.js).
+Syntax implementation of [Godot]'s(https://godotengine.org/) GDScript language for [highlight.js](https://github.com/highlightjs/highlight.js).
 
 ### Authors
 
@@ -9,4 +9,4 @@ The original code was written by [Khairul Hidayat](https://github.com/khairul169
 ### Documentation
 
  - https://highlightjs.org/
- - https://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gescript_basics.html
+ - https://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_basics.html
