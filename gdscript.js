@@ -1,10 +1,12 @@
 /*
 Language: GDScript
-Author: Khairul Hidayat <me@khairul.my.id>
+Author: Khairul Hidayat <me@khairul.my.id>, Nelson Sylvest*r Fritsch <>
 Description: Programming language for Godot Game Engine
 */
+
+var module = module ? module : {};     // shim for browser use
 	
-function(hljs) {
+function hljsDefineGDScript(hljs) {
 	var KEYWORDS = {
 		keyword:
 			'do var const extends is in export onready tool ' +
@@ -65,3 +67,9 @@ function(hljs) {
 		]
 	};
 }
+
+module.exports = function(hljs) {
+    hljs.registerLanguage('gdscript', hljsDefineGDScript);
+};
+
+module.exports.definer = hljsDefineGDScript;
