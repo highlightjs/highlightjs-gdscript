@@ -1,6 +1,6 @@
 /*
 Language: GDScript
-Author: Khairul Hidayat <me@khairul.my.id>, Nelson Sylvest*r Fritsch <>
+Author: Khairul Hidayat <me@khairul.my.id>, Nelson Sylvest*r Fritsch <info@nelsonfritsch.de>
 Description: Programming language for Godot Game Engine
 */
 
