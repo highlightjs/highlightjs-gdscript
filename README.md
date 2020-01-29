@@ -4,7 +4,10 @@ Syntax implementation of [Godot](https://godotengine.org/)'s GDScript language f
 
 ### Authors
 
-The original code was written by [Khairul Hidayat](https://github.com/khairul169). The repository was eventually transfered and maintained by [Nelson Sylvest*r Fritsch](https://github.com/form-follows-function).
+The original code was written by [Khairul Hidayat](https://github.com/khairul169). 
+The repository was eventually maintained by 
+- [Nelson Sylvest*r Fritsch](https://github.com/form-follows-function)
+- [Calinou](https://github.com/Calinou)
 
 ### Documentation
 
