@@ -13,3 +13,21 @@ The repository was eventually maintained by
 
  - https://highlightjs.org/
  - https://docs.godotengine.org/en/latest/getting_started/scripting/gdscript/gdscript_basics.html
+
+### Building
+
+To build a distribution version of this module you need to use tools provided by Highlight.js.
+
+1. Checkout highlightjs/highlight.js from GitHub.
+1. Create the `extra` folder in the root directory, if missing.
+1. In the `extra` directory create a `gdscript` subdirectory and put the contents 
+of this repository there.
+1. Run build tools for the `cdn` target and you should see the `gdscript` language 
+module being build alongside Highlight.js itself:
+
+```
+node ./tools/build.js -t cdn
+
+...
+Building extra\gdscript\dist/gdscript.min.js.
+```
