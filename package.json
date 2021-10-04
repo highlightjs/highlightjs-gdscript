@@ -2,7 +2,7 @@
   "name": "highlightjs-gdscript",
   "version": "0.0.1",
   "description": "highlight.js syntax definition for Godot's GDScript language",
-  "main": "gdscript.js",
+  "main": "src/languages/gdscript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
