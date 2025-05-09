@@ -1,68 +1,128 @@
 /*
 Language: GDScript
-Author: Khairul Hidayat <me@khairul.my.id>, Nelson Sylvest*r Fritsch <info@nelsonfritsch.de>, Hugo Locurcio <hugo.locurcio@hugo.pro>
-Description: Programming language for Godot Engine
+Author: Hugo Locurcio <hugo.locurcio@hugo.pro>, Khairul Hidayat <me@khairul.my.id>, Nelson Sylvest*r Fritsch <info@nelsonfritsch.de>
+Description: Programming language for Godot Engine (supports Godot 4.x and 3.x)
 */
 
-function GDScript(hljs) {
-	var KEYWORDS = {
-		keyword:
-			"and in not or self void as assert breakpoint class class_name " +
-			"extends is func setget signal tool yield const enum export " +
-			"onready static var break continue if elif else for pass return " +
-			"match while remote sync master puppet remotesync mastersync " +
-			"puppetsync",
-
-		built_in:
-			"Color8 ColorN abs acos asin atan atan2 bytes2var " +
-			"cartesian2polar ceil char clamp convert cos cosh db2linear " +
-			"decimals dectime deg2rad dict2inst ease exp floor fmod fposmod " +
-			"funcref get_stack hash inst2dict instance_from_id inverse_lerp " +
-			"is_equal_approx is_inf is_instance_valid is_nan is_zero_approx " +
-			"len lerp lerp_angle linear2db load log max min move_toward " +
-			"nearest_po2 ord parse_json polar2cartesian posmod pow preload " +
-			"print_stack push_error push_warning rad2deg rand_range " +
-			"rand_seed randf randi randomize range_lerp round seed sign sin " +
-			"sinh smoothstep sqrt step_decimals stepify str str2var tan tanh " +
-			"to_json type_exists typeof validate_json var2bytes var2str " +
-			"weakref wrapf wrapi bool int float String NodePath " +
-			"Vector2 Rect2 Transform2D Vector3 Rect3 Plane " +
-			"Quat Basis Transform Color RID Object NodePath " +
-			"Dictionary Array PoolByteArray PoolIntArray " +
-			"PoolRealArray PoolStringArray PoolVector2Array " +
-			"PoolVector3Array PoolColorArray",
-
-		literal: "true false null"
-	};
-
+module.exports = function(hljs) {
 	return {
-		aliases: ["godot", "gdscript"],
-		keywords: KEYWORDS,
+		aliases: ['gdscript', 'godot'],
+		keywords: {
+			keyword:
+				'class class_name const enum extends func namespace signal static ' +
+				'trait var await breakpoint yield set get and in not or void as ' +
+				'assert tool export onready break continue if elif else for pass ' +
+				'return match when while remote sync master puppet remotesync ' +
+				'mastersync puppetsync',
+
+			built_in:
+				'abs absf absi acos acosh angle_difference asin asinh atan atan2 ' +
+				'atanh bezier_derivative bezier_interpolate bytes_to_var ' +
+				'bytes_to_var_with_objects ceil ceilf ceili clamp clampf clampi ' +
+				'cos cosh cubic_interpolate cubic_interpolate_angle ' +
+				'cubic_interpolate_angle_in_time cubic_interpolate_in_time ' +
+				'db_to_linear deg_to_rad ease error_string exp floor floorf ' +
+				'floori fmod fposmod hash instance_from_id inverse_lerp ' +
+				'is_equal_approx is_finite is_inf is_instance_id_valid ' +
+				'is_instance_valid is_nan is_same is_zero_approx lerp lerp_angle ' +
+				'lerpf linear_to_db log max maxf maxi min minf mini move_toward ' +
+				'nearest_po2 pingpong posmod pow print print_rich print_verbose ' +
+				'printerr printraw prints printt push_error push_warning ' +
+				'rad_to_deg rand_from_seed randf randf_range randfn randi ' +
+				'randi_range randomize remap rid_allocate_id rid_from_int64 ' +
+				'rotate_toward round roundf roundi seed sign signf signi sin sinh ' +
+				'smoothstep snapped snappedf snappedi sqrt step_decimals str ' +
+				'str_to_var tan tanh type_convert type_string typeof var_to_bytes ' +
+				'var_to_bytes_with_objects var_to_str weakref wrap wrapf wrapi ' +
+				'Color8 assert char convert dict_to_inst get_stack inst_to_dict ' +
+				'is_instance_of len load preload print_debug print_stack range ' +
+				'type_exists',
+
+			type:
+				'bool int float String Vector2 Vector2i Rect2 Rect2i Transform2D ' +
+				'Vector3 Vector3i Vector4 Vector4i Plane AABB Quaternion Basis ' +
+				'Transform3D Projection Color RID Object Callable Signal ' +
+				'StringName NodePath Dictionary Array PackedByteArray ' +
+				'PackedInt32Array PackedInt64Array PackedFloat32Array ' +
+				'PackedFloat64Array PackedStringArray PackedVector2Array ' +
+				'PackedVector3Array PackedColorArray PackedVector4Array Variant ' +
+				'void',
+
+
+			'char.escape':
+				'\\n \\t \\r \\a \\b \\f \\v \\" \\\' \\\\ ' +
+				'\\u{[0-9a-fA-F]{1,4}} \\U{[0-9a-fA-F]{1,6}}',
+
+			'variable.language': 'self super',
+			'variable.constant': 'PI TAU INF NAN',
+
+			literal: 'true false null',
+		},
 		contains: [
 			hljs.NUMBER_MODE,
-			hljs.HASH_COMMENT_MODE,
 			{
-				className: "comment",
+				className: 'string',
 				begin: /"""/,
-				end: /"""/
+				end: /"""/,
 			},
+			{
+				className: 'string',
+				begin: /'''/,
+				end: /'''/,
+			},
+			{
+				className: 'meta',
+				begin: /#(end)?region/,
+				end: /\n/,
+			},
+			hljs.COMMENT(
+				'#',
+				'$',
+				{
+					contains: [
+						{
+							className: 'doctag',
+							begin: '@(tutorial|deprecated|experimental)+',
+							end: /$/,
+						},
+					],
+				},
+			),
 			hljs.QUOTE_STRING_MODE,
 			{
 				variants: [
 					{
-						className: "function",
-						beginKeywords: "func"
+						className: 'function',
+						beginKeywords: 'func',
 					},
 					{
-						className: "class",
-						beginKeywords: "class"
-					}
+						className: 'class',
+						beginKeywords: 'class',
+					},
 				],
 				end: /:/,
-				contains: [hljs.UNDERSCORE_TITLE_MODE]
-			}
-		]
+				contains: [
+					hljs.UNDERSCORE_TITLE_MODE,
+				],
+			},
+			{
+				className: 'meta',
+				begin: /@/,
+				end: /[ ,\(,\n]/,
+				keywords: {
+					keyword:
+						'@export @export_category @export_color_no_alpha @export_custom ' +
+						'@export_dir @export_enum @export_exp_easing @export_file ' +
+						'@export_flags @export_flags_2d_navigation @export_flags_2d_physics ' +
+						'@export_flags_2d_render @export_flags_3d_navigation ' +
+						'@export_flags_3d_physics @export_flags_3d_render ' +
+						'@export_flags_avoidance @export_global_dir @export_global_file ' +
+						'@export_group @export_multiline @export_node_path ' +
+						'@export_placeholder @export_range @export_storage @export_subgroup ' +
+						'@export_tool_button @icon @onready @rpc @static_unload @tool ' +
+						'@warning_ignore @warning_ignore_restore @warning_ignore_start',
+				},
+			},
+		],
 	};
-}
-
-module.exports = GDScript;
+};

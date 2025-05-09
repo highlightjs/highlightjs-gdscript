@@ -1,14 +1,10 @@
 {
   "name": "highlightjs-gdscript",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "highlight.js syntax definition for Godot's GDScript language",
   "main": "src/languages/gdscript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/form-follows-function/highlightjs-gdscript.git"
   },
   "keywords": [
     "Godot",
@@ -20,7 +16,7 @@
   "author": "form-follows-function",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/form-follows-function/highlightjs-gdscript/issues"
+    "url": "https://github.com/highlightjs/highlightjs-gdscript/issues"
   },
-  "homepage": "https://github.com/form-follows-function/highlightjs-gdscript#readme"
+  "homepage": "https://github.com/highlightjs/highlightjs-gdscript#readme"
 }
