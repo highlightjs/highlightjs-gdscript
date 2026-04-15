@@ -60,6 +60,10 @@ function GDScript(hljs) {
 				],
 				end: /:/,
 				contains: [hljs.UNDERSCORE_TITLE_MODE]
+			},
+			{
+				className: "variable",
+				begin: /\$[A-Za-z_][A-Za-z0-9_]*(\/[A-Za-z_][A-Za-z0-9_]*)*/
 			}
 		]
 	};
